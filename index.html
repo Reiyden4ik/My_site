@@ -1,64 +1,169 @@
-<!-- index.html -->
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Марина самая лучшая</title>
+    <title>Влад - самый лучший</title>
     <style>
-        /* Basic CSS styles to make the site look somewhat real */
+        /* Modern CSS styles */
+        :root {
+            --primary-color: #4a6fa5;
+            --secondary-color: #166088;
+            --accent-color: #4fc3f7;
+            --text-color: #333;
+            --light-bg: #f8f9fa;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-bg);
+            color: var(--text-color);
+            line-height: 1.6;
         }
+
         .header {
-            background-color: #333;
-            color: #fff;
-            padding: 20px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 2rem 0;
             text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
+
+        .header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        }
+
+        nav {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        li {
+            margin: 0;
+        }
+
+        li a {
+            display: block;
+            color: var(--secondary-color);
+            text-align: center;
+            padding: 1rem 1.5rem;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        li a:hover {
+            background-color: var(--accent-color);
+            color: white;
+            transform: translateY(-2px);
+        }
+
         .content {
-            padding: 20px;
-        }
-        .image-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
             text-align: center;
-            margin: 20px;
         }
+
+        .image-container {
+            margin: 3rem 0;
+            position: relative;
+        }
+
         .image {
-            width: 400px;
-            height: 400px;
-            border: 2px solid #ccc;
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease;
+        }
+
+        .image:hover {
+            transform: scale(1.02);
+        }
+
+        p {
+            font-size: 1.2rem;
+            margin: 1.5rem 0;
+            color: var(--text-color);
+        }
+
+        .heart {
+            color: #e91e63;
+            font-size: 1.3em;
+        }
+
+        .footer {
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            color: white;
+            text-align: center;
+            padding: 1.5rem 0;
+            margin-top: 3rem;
+        }
+
+        .footer p {
+            margin: 0;
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            ul {
+                flex-direction: column;
+            }
+
+            li a {
+                padding: 0.8rem;
+            }
         }
     </style>
 </head>
 <body>
     <!-- Header section -->
-    <div class="header">
-        <h1>Любимая♥♥♥</h1>
-        <p></p>
-    </div>
+    <header class="header">
+        <h1>Владюша♥</h1>
+        <p>Ты делаешь мой мир лучше</p>
+    </header>
 
     <!-- Navigation menu -->
-    <ul>
-        <li><a href="#home">Я тебя очень сильно люблю♥</a></li>
-        <li><a href="#about">Ты просто The Best♥♥♥</a></li>
-        <li><a href="#contact">Мечтаю о каждой встрече с тобой!)))</a></li>
-    </ul>
+    <nav>
+        <ul>
+            <li><a href="#home">Я тебя обожаю<span class="heart">♥</span></a></li>
+            <li><a href="#about">Ты лучший<span class="heart">♥♥♥</span></a></li>
+            <li><a href="#contact">Я всегда с тобой<span class="heart">)))</span></a></li>
+        </ul>
+    </nav>
 
     <!-- Main content section -->
-    <div class="content">
-        <h2></h2>
+    <main class="content">
+        <h2>Влад, ты самый лучший!</h2>
         <div class="image-container">
-            <img src="marina.jpg" alt="Марина" class="image">
+            <img src="vlad.jpg" alt="Влад" class="image">
         </div>
-        <p>Все будет хорошо!♥♥♥</p>
-        <p>Я тебя в любом случае поддержжу!♥♥♥</p>
-    </div>
+        <p>Все будет хорошо! <span class="heart">♥♥♥</span></p>
+        <p>Я тебя в любом случае поддержу! <span class="heart">♥♥♥</span></p>
+    </main>
 
     <!-- Footer section -->
-    <div class="footer">
-        <p>&copy;Даня любовью♥♥♥</p>
-    </div>
+    <footer class="footer">
+        <p>&copy; С любовью от Дани <span class="heart">♥♥♥</span></p>
+    </footer>
 </body>
 </html>
