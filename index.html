@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Влад - Космический Гений</title>
+    <title>Влад - Киберлегенда</title>
     <style>
         :root {
             --primary-color: #000000;
@@ -13,16 +13,17 @@
         }
 
         body {
-            font-family: 'Roboto Mono', monospace;
+            font-family: 'Courier New', monospace;
             background: var(--primary-color);
             color: var(--text-color);
             margin: 0;
+            line-height: 1.6;
             overflow-x: hidden;
         }
 
+        /* Хедер */
         .header {
-            background: radial-gradient(circle at center, #1a1a1a 0%, #000 100%);
-            padding: 4rem 0;
+            padding: 4rem 1rem;
             text-align: center;
             border-bottom: 3px solid var(--accent-color);
             position: relative;
@@ -40,16 +41,17 @@
         }
 
         h1 {
-            font-size: 3.5rem;
+            font-size: clamp(2rem, 8vw, 3.5rem);
             text-transform: uppercase;
             letter-spacing: 0.3em;
             text-shadow: 0 0 15px var(--neon-red);
             margin: 1rem 0;
         }
 
+        /* Навигация */
         nav {
             backdrop-filter: blur(10px);
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.9);
             padding: 1rem;
             position: sticky;
             top: 0;
@@ -57,34 +59,38 @@
         }
 
         ul {
-            display: flex;
-            justify-content: center;
-            gap: 3rem;
+            list-style: none;
             padding: 0;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
         }
 
         li a {
             color: var(--text-color);
             text-decoration: none;
-            padding: 1rem;
+            padding: 0.8rem 1.2rem;
             border: 1px solid var(--neon-red);
-            transition: all 0.3s ease;
-            position: relative;
+            transition: all 0.3s;
+            font-size: clamp(0.9rem, 3vw, 1.1rem);
+            display: block;
         }
 
         li a:hover {
             background: var(--neon-red);
             box-shadow: 0 0 20px var(--neon-red);
-            transform: scale(1.1);
         }
 
+        /* Коллаж */
         .collage {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
             max-width: 1200px;
-            margin: 4rem auto;
-            padding: 2rem;
+            margin: 3rem auto;
+            padding: 0 1rem;
         }
 
         .collage img {
@@ -92,40 +98,33 @@
             height: 300px;
             object-fit: cover;
             border: 2px solid var(--neon-red);
-            transition: transform 0.3s ease;
-            filter: grayscale(100%);
+            transition: 0.3s;
+            filter: grayscale(80%);
         }
 
         .collage img:hover {
-            transform: rotate(-5deg) scale(1.05);
-            filter: none;
-            z-index: 2;
+            filter: grayscale(0);
+            transform: scale(1.05);
         }
 
+        /* Контент */
         .content {
             max-width: 800px;
-            margin: 4rem auto;
-            padding: 2rem;
-            border-left: 3px solid var(--neon-red);
+            margin: 3rem auto;
+            padding: 0 1.5rem;
             position: relative;
-        }
-
-        .content::before {
-            content: '✦';
-            position: absolute;
-            left: -20px;
-            top: -15px;
-            color: var(--neon-red);
-            font-size: 2rem;
         }
 
         .cyber-text {
             text-align: justify;
-            line-height: 1.8;
-            font-size: 1.1rem;
-            background: linear-gradient(45deg, #fff 50%, var(--neon-red) 100%);
+            font-size: clamp(1rem, 3vw, 1.1rem);
+            background: linear-gradient(45deg, #fff 30%, var(--neon-red) 70%);
             -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
+            padding: 1rem;
+            border: 1px solid var(--neon-red);
+            box-shadow: 0 0 15px var(--neon-red);
         }
 
         .heart {
@@ -139,65 +138,82 @@
             100% { transform: scale(1); }
         }
 
-        .matrix-effect {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-            opacity: 0.1;
+        /* Футер */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+            border-top: 1px solid var(--neon-red);
+        }
+
+        /* Мобильная адаптация */
+        @media (max-width: 768px) {
+            .header {
+                padding: 2rem 1rem;
+            }
+
+            h1 {
+                letter-spacing: 0.1em;
+            }
+
+            .collage {
+                grid-template-columns: 1fr;
+            }
+
+            .collage img {
+                height: 250px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="matrix-effect"></div>
-
     <header class="header">
-        <h1>ВΛД</h1>
-        <p>Кибер-Легенда 2077</p>
+        <h1>ВΛД_OS</h1>
+        <p>Система версии 2077.ГЕНИЙ</p>
     </header>
 
     <nav>
         <ul>
-            <li><a href="#home">Галактический Герой<span class="heart"> ❤</span></a></li>
-            <li><a href="#about">ТехноГуру<span class="heart"> ❤❤</span></a></li>
-            <li><a href="#contact">Космическая Связь<span class="heart"> ❤❤❤</span></a></li>
+            <li><a href="#hero">Кибер-Ядро<span class="heart"> ❤</span></a></li>
+            <li><a href="#specs">Технические характеристики<span class="heart"> ❤❤</span></a></li>
+            <li><a href="#galaxy">Галактическое признание<span class="heart"> ❤❤❤</span></a></li>
         </ul>
     </nav>
 
     <div class="collage">
-        <img src="vlad1.jpg" alt="Влад 1">
-        <img src="vlad2.jpg" alt="Влад 2">
-        <img src="vlad3.jpg" alt="Влад 3">
+        <img src="vlad1.jpg" alt="Влад - ТехноМастер">
+        <img src="vlad2.jpg" alt="Влад - Космический эксперт">
+        <img src="vlad3.jpg" alt="Влад - Легенда будущего">
     </div>
 
     <main class="content">
         <div class="cyber-text">
-            <h2>Кибер-Характеристики Влада:</h2>
-            <p>✦ Уровень интеллекта: ∞/10. Способен решать квантовые уравнения во сне.
-               Встроенный процессор справляется с любыми задачами быстрее квантового компьютера.</p>
+            <h2>Квантовые характеристики системы ВЛАД_OS:</h2>
 
-            <p>✦ Социальный модуль: Харизма 9000+. Превращает обычные встречи в эпические события.
-               Обладает редким даром вдохновлять и мотивировать целые галактики.</p>
+            <p>✦ Процессор: 128-ядерный нейрочип поколения RX-9000. Способен обрабатывать 1 экзафлопс операций в наносекунду.
+            Анализирует и оптимизирует реальность в режиме реального времени.</p>
 
-            <p>✦ Технические навыки: Мастер кода и механики. Способен чинить пространственно-временные
-               аномалии голыми руками. Знает все языки программирования, включая марсианский диалект Python.</p>
+            <p>✦ Память: Квантовая DDR6X с частотой 10000 МГц. Хранит знания всех цивилизаций Млечного Пути
+            и 25 альтернативных вселенных.</p>
 
-            <p>✦ Эмоциональный интеллект: Супер-Эмпатия уровня 5. Чувствует настроение за 500 световых лет.
-               Встроенная система поддержки никогда не дает сбоев.</p>
+            <p>✦ Графика: RTX 9090 Ti с рейтрейсингом 16K. Визуализирует идейные концепты до их материализации.</p>
 
-            <p>✦ Физические параметры: Выносливость терминатора + грация пантеры. Способен одновременно:
-               покорять горные вершины, программировать ИИ и готовить идеальный кофе.</p>
+            <p>✦ Интерфейсы: Поддержка 360° голографической связи, телепатический ввод данных,
+            квантовый Bluetooth 10.0 с радиусом действия 12 световых лет.</p>
 
-            <p>✦ Особые способности: Телепортация в нужный момент, создание позитивной реальности вокруг себя,
-               генерация бесконечной энергии для важных дел.</p>
+            <p>✦ Особые функции:<br>
+            - Генератор позитивной реальности v4.2<br>
+            - Антигравитационная система поддержки<br>
+            - Встроенный сарказм-детектор с AI фильтрацией<br>
+            - Квантовый юмор-процессор с библиотекой из 10¹⁸ шуток</p>
+
+            <p>✦ Безопасность: 512-битное шифрование, система распознавания друзей/врагов по квантовым колебаниям ауры,
+            защита от любых форм сомнений и негатива.</p>
         </div>
     </main>
 
-    <footer style="text-align: center; padding: 2rem; border-top: 1px solid var(--neon-red);">
-        <p>Системное сообщение: Этот объект незаменим в любой вселенной <span class="heart"> ❤❤❤</span></p>
+    <footer>
+        <p>ВНИМАНИЕ: Объект категории "LEGENDARY" - репликация запрещена! <span class="heart"> ❤❤❤</span></p>
     </footer>
 </body>
 </html>
