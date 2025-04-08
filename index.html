@@ -3,167 +3,201 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Влад - самый лучший</title>
+    <title>Влад - Космический Гений</title>
     <style>
-        /* Modern CSS styles */
         :root {
-            --primary-color: #4a6fa5;
-            --secondary-color: #166088;
-            --accent-color: #4fc3f7;
-            --text-color: #333;
-            --light-bg: #f8f9fa;
+            --primary-color: #000000;
+            --accent-color: #ff1a1a;
+            --neon-red: #ff073a;
+            --text-color: #ffffff;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: var(--light-bg);
+            font-family: 'Roboto Mono', monospace;
+            background: var(--primary-color);
             color: var(--text-color);
-            line-height: 1.6;
+            margin: 0;
+            overflow-x: hidden;
         }
 
         .header {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            padding: 2rem 0;
+            background: radial-gradient(circle at center, #1a1a1a 0%, #000 100%);
+            padding: 4rem 0;
             text-align: center;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-
-        .header h1 {
-            margin: 0;
-            font-size: 2.5rem;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
-        }
-
-        nav {
-            background-color: white;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        ul {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        li {
-            margin: 0;
-        }
-
-        li a {
-            display: block;
-            color: var(--secondary-color);
-            text-align: center;
-            padding: 1rem 1.5rem;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-
-        li a:hover {
-            background-color: var(--accent-color);
-            color: white;
-            transform: translateY(-2px);
-        }
-
-        .content {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 2rem;
-            text-align: center;
-        }
-
-        .image-container {
-            margin: 3rem 0;
+            border-bottom: 3px solid var(--accent-color);
             position: relative;
         }
 
-        .image {
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
             width: 100%;
-            max-width: 500px;
-            height: auto;
-            border-radius: 8px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-            transition: transform 0.3s ease;
+            height: 10px;
+            background: linear-gradient(90deg, transparent, var(--neon-red), transparent);
+            filter: blur(2px);
         }
 
-        .image:hover {
-            transform: scale(1.02);
+        h1 {
+            font-size: 3.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            text-shadow: 0 0 15px var(--neon-red);
+            margin: 1rem 0;
         }
 
-        p {
-            font-size: 1.2rem;
-            margin: 1.5rem 0;
+        nav {
+            backdrop-filter: blur(10px);
+            background: rgba(0, 0, 0, 0.8);
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        ul {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            padding: 0;
+        }
+
+        li a {
             color: var(--text-color);
+            text-decoration: none;
+            padding: 1rem;
+            border: 1px solid var(--neon-red);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        li a:hover {
+            background: var(--neon-red);
+            box-shadow: 0 0 20px var(--neon-red);
+            transform: scale(1.1);
+        }
+
+        .collage {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 2rem;
+        }
+
+        .collage img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border: 2px solid var(--neon-red);
+            transition: transform 0.3s ease;
+            filter: grayscale(100%);
+        }
+
+        .collage img:hover {
+            transform: rotate(-5deg) scale(1.05);
+            filter: none;
+            z-index: 2;
+        }
+
+        .content {
+            max-width: 800px;
+            margin: 4rem auto;
+            padding: 2rem;
+            border-left: 3px solid var(--neon-red);
+            position: relative;
+        }
+
+        .content::before {
+            content: '✦';
+            position: absolute;
+            left: -20px;
+            top: -15px;
+            color: var(--neon-red);
+            font-size: 2rem;
+        }
+
+        .cyber-text {
+            text-align: justify;
+            line-height: 1.8;
+            font-size: 1.1rem;
+            background: linear-gradient(45deg, #fff 50%, var(--neon-red) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .heart {
-            color: #e91e63;
-            font-size: 1.3em;
+            color: var(--neon-red);
+            animation: pulse 1.5s infinite;
         }
 
-        .footer {
-            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
-            color: white;
-            text-align: center;
-            padding: 1.5rem 0;
-            margin-top: 3rem;
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
         }
 
-        .footer p {
-            margin: 0;
-            color: white;
-        }
-
-        @media (max-width: 768px) {
-            .header h1 {
-                font-size: 2rem;
-            }
-
-            ul {
-                flex-direction: column;
-            }
-
-            li a {
-                padding: 0.8rem;
-            }
+        .matrix-effect {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0.1;
         }
     </style>
 </head>
 <body>
-    <!-- Header section -->
+    <div class="matrix-effect"></div>
+
     <header class="header">
-        <h1>Владюша♥</h1>
-        <p>Ты делаешь мой мир лучше</p>
+        <h1>ВΛД</h1>
+        <p>Кибер-Легенда 2077</p>
     </header>
 
-    <!-- Navigation menu -->
     <nav>
         <ul>
-            <li><a href="#home">Я тебя обожаю<span class="heart">♥</span></a></li>
-            <li><a href="#about">Ты лучший<span class="heart">♥♥♥</span></a></li>
-            <li><a href="#contact">Я всегда с тобой<span class="heart">)))</span></a></li>
+            <li><a href="#home">Галактический Герой<span class="heart"> ❤</span></a></li>
+            <li><a href="#about">ТехноГуру<span class="heart"> ❤❤</span></a></li>
+            <li><a href="#contact">Космическая Связь<span class="heart"> ❤❤❤</span></a></li>
         </ul>
     </nav>
 
-    <!-- Main content section -->
+    <div class="collage">
+        <img src="vlad1.jpg" alt="Влад 1">
+        <img src="vlad2.jpg" alt="Влад 2">
+        <img src="vlad3.jpg" alt="Влад 3">
+    </div>
+
     <main class="content">
-        <h2>Влад, ты самый лучший!</h2>
-        <div class="image-container">
-            <img src="vlad.jpg" alt="Влад" class="image">
+        <div class="cyber-text">
+            <h2>Кибер-Характеристики Влада:</h2>
+            <p>✦ Уровень интеллекта: ∞/10. Способен решать квантовые уравнения во сне.
+               Встроенный процессор справляется с любыми задачами быстрее квантового компьютера.</p>
+
+            <p>✦ Социальный модуль: Харизма 9000+. Превращает обычные встречи в эпические события.
+               Обладает редким даром вдохновлять и мотивировать целые галактики.</p>
+
+            <p>✦ Технические навыки: Мастер кода и механики. Способен чинить пространственно-временные
+               аномалии голыми руками. Знает все языки программирования, включая марсианский диалект Python.</p>
+
+            <p>✦ Эмоциональный интеллект: Супер-Эмпатия уровня 5. Чувствует настроение за 500 световых лет.
+               Встроенная система поддержки никогда не дает сбоев.</p>
+
+            <p>✦ Физические параметры: Выносливость терминатора + грация пантеры. Способен одновременно:
+               покорять горные вершины, программировать ИИ и готовить идеальный кофе.</p>
+
+            <p>✦ Особые способности: Телепортация в нужный момент, создание позитивной реальности вокруг себя,
+               генерация бесконечной энергии для важных дел.</p>
         </div>
-        <p>Все будет хорошо! <span class="heart">♥♥♥</span></p>
-        <p>Я тебя в любом случае поддержу! <span class="heart">♥♥♥</span></p>
     </main>
 
-    <!-- Footer section -->
-    <footer class="footer">
-        <p>&copy; С любовью от Дани <span class="heart">♥♥♥</span></p>
+    <footer style="text-align: center; padding: 2rem; border-top: 1px solid var(--neon-red);">
+        <p>Системное сообщение: Этот объект незаменим в любой вселенной <span class="heart"> ❤❤❤</span></p>
     </footer>
 </body>
 </html>
