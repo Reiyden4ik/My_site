@@ -1,10 +1,14 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Влад - Киберлегенда</title>
-    <style>
+</head>
+<body>
+    <script>
+        (function() {
+    // Создаем элемент стилей
+    const style = document.createElement('style');
+    style.textContent = `
         :root {
             --primary-color: #000000;
             --accent-color: #ff1a1a;
@@ -21,7 +25,6 @@
             overflow-x: hidden;
         }
 
-        /* Хедер */
         .header {
             padding: 4rem 1rem;
             text-align: center;
@@ -48,7 +51,6 @@
             margin: 1rem 0;
         }
 
-        /* Навигация */
         nav {
             backdrop-filter: blur(10px);
             background: rgba(0, 0, 0, 0.9);
@@ -83,7 +85,6 @@
             box-shadow: 0 0 20px var(--neon-red);
         }
 
-        /* Коллаж */
         .collage {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -107,7 +108,6 @@
             transform: scale(1.05);
         }
 
-        /* Контент */
         .content {
             max-width: 800px;
             margin: 3rem auto;
@@ -138,7 +138,6 @@
             100% { transform: scale(1); }
         }
 
-        /* Футер */
         footer {
             text-align: center;
             padding: 2rem;
@@ -146,7 +145,6 @@
             border-top: 1px solid var(--neon-red);
         }
 
-        /* Мобильная адаптация */
         @media (max-width: 768px) {
             .header {
                 padding: 2rem 1rem;
@@ -164,56 +162,110 @@
                 height: 250px;
             }
         }
-    </style>
-</head>
-<body>
-    <header class="header">
-        <h1>ВΛД_OS</h1>
-        <p>Система версии 2077.ГЕНИЙ</p>
-    </header>
+    `;
+    document.head.appendChild(style);
 
-    <nav>
-        <ul>
-            <li><a href="#hero">Кибер-Ядро<span class="heart"> ❤</span></a></li>
-            <li><a href="#specs">Технические характеристики<span class="heart"> ❤❤</span></a></li>
-            <li><a href="#galaxy">Галактическое признание<span class="heart"> ❤❤❤</span></a></li>
-        </ul>
-    </nav>
+    // Создаем структуру страницы
+    const body = document.body;
+    
+    // Header
+    const header = document.createElement('header');
+    header.className = 'header';
+    
+    const h1 = document.createElement('h1');
+    h1.textContent = 'ВΛД_OS';
+    
+    const headerP = document.createElement('p');
+    headerP.textContent = 'Система версии 2077.ГЕНИЙ';
+    
+    header.append(h1, headerP);
+    body.appendChild(header);
 
-    <div class="collage">
-        <img src="vlad1.jpg" alt="Влад - ТехноМастер">
-        <img src="vlad2.jpg" alt="Влад - Космический эксперт">
-        <img src="vlad3.jpg" alt="Влад - Легенда будущего">
-    </div>
+    // Navigation
+    const nav = document.createElement('nav');
+    const ul = document.createElement('ul');
+    
+    const navItems = [
+        {text: 'Кибер-Ядро', hearts: 1},
+        {text: 'Технические характеристики', hearts: 2},
+        {text: 'Галактическое признание', hearts: 3}
+    ];
+    
+    navItems.forEach(item => {
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+        a.href = `#${item.text.toLowerCase().replace(/\s+/g, '-')}`;
+        
+        const span = document.createElement('span');
+        span.className = 'heart';
+        span.textContent = ' ❤'.repeat(item.hearts);
+        
+        a.textContent = item.text;
+        a.appendChild(span);
+        li.appendChild(a);
+        ul.appendChild(li);
+    });
+    
+    nav.appendChild(ul);
+    body.appendChild(nav);
 
-    <main class="content">
-        <div class="cyber-text">
-            <h2>Квантовые характеристики системы ВЛАД_OS:</h2>
+    // Collage
+    const collage = document.createElement('div');
+    collage.className = 'collage';
+    
+    const images = [
+        {src: 'vlad1.jpg', alt: 'Влад - ТехноМастер'},
+        {src: 'vlad2.jpg', alt: 'Влад - Космический эксперт'},
+        {src: 'vlad3.jpg', alt: 'Влад - Легенда будущего'},
+        {src: 'vlad4.jpg', alt: 'Влад - Космический эксперт'}
+    ];
+    
+    images.forEach(imgData => {
+        const img = document.createElement('img');
+        img.src = imgData.src;
+        img.alt = imgData.alt;
+        collage.appendChild(img);
+    });
+    
+    body.appendChild(collage);
 
-            <p>✦ Процессор: 128-ядерный нейрочип поколения RX-9000. Способен обрабатывать 1 экзафлопс операций в наносекунду.
-            Анализирует и оптимизирует реальность в режиме реального времени.</p>
+    // Main Content
+    const main = document.createElement('main');
+    main.className = 'content';
+    
+    const cyberText = document.createElement('div');
+    cyberText.className = 'cyber-text';
+    
+    const contentHTML = `
+        <h2>Квантовые характеристики системы ВЛАД_OS:</h2>
+        <p>✦ Процессор: 128-ядерный нейрочип поколения RX-9000. Способен обрабатывать 1 экзафлопс операций в наносекунду.
+        Анализирует и оптимизирует реальность в режиме реального времени.</p>
+        <p>✦ Память: Квантовая DDR6X с частотой 10000 МГц. Хранит знания всех цивилизаций Млечного Пути
+        и 25 альтернативных вселенных.</p>
+        <p>✦ Графика: RTX 9090 Ti с рейтрейсингом 16K. Визуализирует идейные концепты до их материализации.</p>
+        <p>✦ Интерфейсы: Поддержка 360° голографической связи, телепатический ввод данных,
+        квантовый Bluetooth 10.0 с радиусом действия 12 световых лет.</p>
+        <p>✦ Особые функции:<br>
+        - Генератор позитивной реальности v4.2<br>
+        - Антигравитационная система поддержки<br>
+        - Встроенный сарказм-детектор с AI фильтрацией<br>
+        - Квантовый юмор-процессор с библиотекой из 10¹⁸ шуток</p>
+        <p>✦ Безопасность: 512-битное шифрование, система распознавания друзей/врагов по квантовым колебаниям ауры,
+        защита от любых форм сомнений и негатива.</p>
+    `;
+    
+    cyberText.innerHTML = contentHTML;
+    main.appendChild(cyberText);
+    body.appendChild(main);
 
-            <p>✦ Память: Квантовая DDR6X с частотой 10000 МГц. Хранит знания всех цивилизаций Млечного Пути
-            и 25 альтернативных вселенных.</p>
-
-            <p>✦ Графика: RTX 9090 Ti с рейтрейсингом 16K. Визуализирует идейные концепты до их материализации.</p>
-
-            <p>✦ Интерфейсы: Поддержка 360° голографической связи, телепатический ввод данных,
-            квантовый Bluetooth 10.0 с радиусом действия 12 световых лет.</p>
-
-            <p>✦ Особые функции:<br>
-            - Генератор позитивной реальности v4.2<br>
-            - Антигравитационная система поддержки<br>
-            - Встроенный сарказм-детектор с AI фильтрацией<br>
-            - Квантовый юмор-процессор с библиотекой из 10¹⁸ шуток</p>
-
-            <p>✦ Безопасность: 512-битное шифрование, система распознавания друзей/врагов по квантовым колебаниям ауры,
-            защита от любых форм сомнений и негатива.</p>
-        </div>
-    </main>
-
-    <footer>
-        <p>ВНИМАНИЕ: Объект категории "LEGENDARY" - репликация запрещена! <span class="heart"> ❤❤❤</span></p>
-    </footer>
+    // Footer
+    const footer = document.createElement('footer');
+    const footerP = document.createElement('p');
+    footerP.innerHTML = 'ВНИМАНИЕ: Объект категории "LEGENDARY" - репликация запрещена! <span class="heart"> ❤❤❤</span>';
+    
+    footer.appendChild(footerP);
+    body.appendChild(footer);
+})();
+    </script>
 </body>
 </html>
