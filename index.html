@@ -11,11 +11,16 @@
             --text-color: #ffffff;
         }
 
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
             font-family: 'Courier New', monospace;
             background: var(--primary-color);
             color: var(--text-color);
-            margin: 0;
             line-height: 1.6;
             overflow-x: hidden;
         }
@@ -82,11 +87,12 @@
 
         .collage {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
             gap: 1.5rem;
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 3rem auto;
             padding: 0 1rem;
+            width: 100%;
         }
 
         .collage img {
@@ -101,7 +107,7 @@
 
         .collage img:hover {
             filter: grayscale(0);
-            transform: scale(1.05);
+            transform: scale(1.03);
         }
 
         .content {
@@ -141,7 +147,7 @@
             border-top: 1px solid var(--neon-red);
         }
 
-        /* Стили для модального окна */
+        /* Модальное окно */
         .modal {
             display: none;
             position: fixed;
@@ -157,16 +163,18 @@
         .modal-content {
             position: relative;
             margin: auto;
-            display: block;
-            width: 80%;
-            max-width: 1200px;
-            top: 50%;
-            transform: translateY(-50%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 95%;
+            height: 95vh;
+            max-width: 1400px;
         }
 
         .modal-img {
-            width: 100%;
-            height: auto;
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
             border: 3px solid var(--neon-red);
             box-shadow: 0 0 30px var(--neon-red);
         }
@@ -219,16 +227,13 @@
                 letter-spacing: 0.1em;
             }
 
-            .collage {
-                grid-template-columns: 1fr;
-            }
-
             .collage img {
                 height: 250px;
             }
 
             .modal-content {
-                width: 95%;
+                width: 98%;
+                height: 90vh;
             }
 
             .nav-arrow {
@@ -240,6 +245,20 @@
                 font-size: 30px;
                 top: 10px;
                 right: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .collage {
+                grid-template-columns: 1fr;
+            }
+
+            .collage img {
+                height: 200px;
+            }
+
+            .nav-arrow {
+                font-size: 30px;
             }
         }
     </style>
@@ -290,7 +309,7 @@
             nav.appendChild(ul);
             body.appendChild(nav);
 
-            // Collage и модальное окно
+            // Collage
             const collage = document.createElement('div');
             collage.className = 'collage';
             
@@ -301,7 +320,7 @@
                 {src: 'photos/vlad4.jpg', alt: 'Влад - Космический эксперт'}
             ];
             
-            // Создаем модальное окно
+            // Модальное окно
             const modal = document.createElement('div');
             modal.className = 'modal';
             
@@ -329,7 +348,7 @@
 
             let currentImageIndex = 0;
             
-            // Функции для управления модальным окном
+            // Управление модальным окном
             function openModal(index) {
                 currentImageIndex = index;
                 modalImg.src = images[currentImageIndex].src;
@@ -371,7 +390,7 @@
                 changeImage(1);
             });
 
-            // Управление с клавиатуры
+            // Управление клавиатурой
             document.addEventListener('keydown', (e) => {
                 if(modal.style.display === 'block') {
                     switch(e.key) {
@@ -390,7 +409,7 @@
 
             body.appendChild(collage);
 
-            // Main Content
+            // Основной контент
             const main = document.createElement('main');
             main.className = 'content';
             
@@ -419,7 +438,7 @@
             main.appendChild(cyberText);
             body.appendChild(main);
 
-            // Footer
+            // Футер
             const footer = document.createElement('footer');
             const footerP = document.createElement('p');
             footerP.innerHTML = 'ВНИМАНИЕ: Объект категории "LEGENDARY" - репликация запрещена! <span class="heart"> ❤❤❤</span>';
