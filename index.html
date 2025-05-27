@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Секретная зона 🔒</title>
+    <style>
+        body {
+            background-color: #0a0a0a;
+            color: #00ff00;
+            font-family: 'Courier New', monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            border: 2px solid #00ff00;
+            padding: 2rem;
+            max-width: 600px;
+            position: relative;
+            box-shadow: 0 0 15px #00ff0080;
+            animation: glow 2s infinite alternate;
+        }
+
+        h1 {
+            margin-top: 0;
+            font-size: 1.8rem;
+            text-shadow: 0 0 5px #00ff00;
+        }
+
+        .telegram-btn {
+            display: none;
+            background-color: #0088cc;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 1rem;
+            transition: transform 0.3s, background-color 0.3s;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .telegram-btn-visible {
+            display: inline-block;
+            animation: btnAppear 1s forwards;
+        }
+
+        @keyframes glow {
+            from { box-shadow: 0 0 10px #00ff0080; }
+            to { box-shadow: 0 0 20px #00ff00; }
+        }
+
+        @keyframes btnAppear {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .text-cursor {
+            display: inline-block;
+            width: 8px;
+            height: 1em;
+            background: #00ff00;
+            margin-left: 3px;
+            vertical-align: middle;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔐 Секретная зона</h1>
+        <div id="main-text"></div>
+        <div id="additional-text" style="margin-top: 1rem;"></div>
+        <a href="https://t.me/Reiyden" target="_blank" class="telegram-btn">
+            📨 Связаться с разработчиком
+        </a>
+    </div>
+
+    <script>
+        const messages = [
+            "Ты попал в секретную зону. Если ты не являешься:\n\n➔ Разработчиком этого проекта (или братом разработчика)\n➔ Котом, умеющим печатать\n➔ Путешественником из будущего\n\n...то тебе здесь не место. 🚫",
+            "\n\nЕсли очень хочется — можешь связаться с разработчиком"
+        ];
+
+        let currentMessage = 0;
+        let currentChar = 0;
+        const mainText = document.getElementById('main-text');
+        const additionalText = document.getElementById('additional-text');
+        const btn = document.querySelector('.telegram-btn');
+
+        function typeText() {
+            if(currentMessage >= messages.length) {
+                btn.classList.add('telegram-btn-visible');
+                return;
+            }
+
+            const targetElement = currentMessage === 0 ? mainText : additionalText;
+            const text = messages[currentMessage];
+            
+            if(currentChar < text.length) {
+                let char = text.charAt(currentChar);
+                if(char === '\n') {
+                    targetElement.innerHTML += '<br>';
+                } else {
+                    targetElement.innerHTML += char;
+                }
+                currentChar++;
+                setTimeout(typeText, currentMessage === 0 ? 40 : 30);
+            } else {
+                currentMessage++;
+                currentChar = 0;
+                setTimeout(typeText, 500);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', typeText);
+    </script>
+</body>
+</html>
