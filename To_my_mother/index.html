@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Анжелика - Мама с большой буквы</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #f8f4ff;
+            --accent-color: #9370db;
+            --purple-light: #c5a1fa;
+            --purple-dark: #7b68ee;
+            --text-color: #4a4a4a;
+            --shadow: 0 4px 20px rgba(147, 112, 219, 0.15);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f8f4ff 0%, #f0e6ff 100%);
+            color: var(--text-color);
+            line-height: 1.7;
+            overflow-x: hidden;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M20,50 C20,60 30,70 40,70 C50,70 60,60 60,50 C60,40 50,30 40,30 C30,30 20,40 20,50 Z" fill="%23c5a1fa40"/><path d="M70,30 C80,30 90,40 90,50 C90,60 80,70 70,70 C60,70 50,60 50,50 C50,40 60,30 70,30 Z" fill="%23c5a1fa30"/><path d="M10,20 C15,15 25,15 30,20 C25,25 15,25 10,20 Z" fill="%23c5a1fa20"/></svg>');
+            background-size: 300px;
+            opacity: 0.3;
+            z-index: -1;
+        }
+
+        .header {
+            padding: 5rem 1rem 3rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, var(--accent-color) 0%, transparent 70%);
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            color: var(--purple-dark);
+            margin-bottom: 1rem;
+            font-weight: 700;
+            text-shadow: 0 2px 8px rgba(123, 104, 238, 0.2);
+            font-family: 'Georgia', serif;
+        }
+
+        .subtitle {
+            font-size: clamp(1.3rem, 4vw, 1.8rem);
+            color: var(--accent-color);
+            font-weight: 300;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            position: relative;
+            font-style: italic;
+        }
+
+        .flower {
+            display: inline-block;
+            color: var(--accent-color);
+            margin: 0 5px;
+            animation: sway 4s infinite ease-in-out;
+        }
+
+        @keyframes sway {
+            0% { transform: rotate(0deg); }
+            25% { transform: rotate(5deg); }
+            50% { transform: rotate(-5deg); }
+            75% { transform: rotate(3deg); }
+            100% { transform: rotate(0deg); }
+        }
+
+        nav {
+            background: rgba(255, 255, 255, 0.92);
+            padding: 1.2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(5px);
+            border-bottom: 1px solid var(--purple-light);
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+
+        li a {
+            color: var(--text-color);
+            text-decoration: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            font-size: clamp(0.95rem, 3vw, 1.1rem);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(197, 161, 250, 0.1);
+            border: 1px solid var(--purple-light);
+            position: relative;
+            overflow: hidden;
+        }
+
+        li a::before {
+            content: '❀';
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 0.3;
+            transition: all 0.3s;
+        }
+
+        li a:hover {
+            background: var(--accent-color);
+            color: white;
+            box-shadow: 0 5px 15px rgba(147, 112, 219, 0.3);
+            transform: translateY(-2px);
+        }
+
+        li a:hover::before {
+            opacity: 0.8;
+            transform: translateY(-50%) rotate(45deg);
+        }
+
+        .qualities {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 3rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .quality-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            position: relative;
+            border: 1px solid var(--purple-light);
+        }
+
+        .quality-card::before {
+            content: '✿';
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            color: var(--purple-light);
+            font-size: 1.5rem;
+            opacity: 0.3;
+        }
+
+        .quality-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 30px rgba(147, 112, 219, 0.25);
+        }
+
+        .card-icon {
+            background: linear-gradient(135deg, var(--purple-light) 0%, var(--accent-color) 100%);
+            color: white;
+            font-size: 2.5rem;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card-content {
+            padding: 2rem;
+            flex-grow: 1;
+        }
+
+        .card-content h3 {
+            color: var(--purple-dark);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            font-family: 'Georgia', serif;
+        }
+
+        .card-content p {
+            margin-bottom: 1.5rem;
+        }
+
+        .content {
+            max-width: 900px;
+            margin: 4rem auto;
+            padding: 0 1.5rem;
+            position: relative;
+        }
+
+        .content-box {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--purple-light);
+        }
+
+        .content-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 8px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--purple-light), var(--accent-color));
+        }
+
+        .content-box::after {
+            content: '❁';
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            color: var(--purple-light);
+            font-size: 1.5rem;
+            opacity: 0.2;
+        }
+
+        .content-box h2 {
+            color: var(--purple-dark);
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            font-family: 'Georgia', serif;
+        }
+
+        .content-box p {
+            margin-bottom: 1.2rem;
+            font-size: 1.1rem;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, rgba(197, 161, 250, 0.3) 0%, rgba(197, 161, 250, 0.1) 100%);
+            padding: 0.3rem 0.6rem;
+            border-radius: 5px;
+            font-weight: 600;
+        }
+
+        .quote-section {
+            margin: 5rem auto;
+            max-width: 800px;
+            text-align: center;
+            padding: 0 1.5rem;
+            position: relative;
+        }
+
+        .quote-section::before {
+            content: '❀ ❁ ✿';
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--purple-light);
+            font-size: 2rem;
+            letter-spacing: 15px;
+            opacity: 0.3;
+        }
+
+        .quote {
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            font-style: italic;
+            color: var(--purple-dark);
+            position: relative;
+            padding: 0 3rem;
+            line-height: 1.5;
+        }
+
+        .quote::before,
+        .quote::after {
+            content: '"';
+            font-size: 4rem;
+            color: var(--purple-light);
+            position: absolute;
+            opacity: 0.3;
+        }
+
+        .quote::before {
+            top: -1.5rem;
+            left: 0;
+        }
+
+        .quote::after {
+            bottom: -3rem;
+            right: 0;
+        }
+
+        .author {
+            margin-top: 2rem;
+            font-size: 1.2rem;
+            color: var(--accent-color);
+        }
+
+        .flowers-container {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .flower-item {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+            width: 170px;
+            transition: all 0.3s ease;
+            border: 1px solid var(--purple-light);
+            position: relative;
+        }
+
+        .flower-item::after {
+            content: '❁';
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: var(--purple-light);
+            opacity: 0.3;
+        }
+
+        .flower-item:hover {
+            transform: scale(1.1);
+        }
+
+        .flower-item i {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        footer {
+            background: linear-gradient(135deg, var(--purple-light) 0%, var(--accent-color) 100%);
+            color: white;
+            text-align: center;
+            padding: 4rem 1rem;
+            margin-top: 5rem;
+            position: relative;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            left: 0;
+            width: 100%;
+            height: 50px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M1200 120L0 16.48 0 0 1200 0 1200 120z" fill="%23ffffff"/></svg>');
+            background-size: 1200px 100%;
+        }
+
+        footer p {
+            max-width: 600px;
+            margin: 0 auto 1.5rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            color: white;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            background: white;
+            color: var(--accent-color);
+            transform: translateY(-5px);
+        }
+
+        .heart {
+            color: #ff69b4;
+            display: inline-block;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 3rem 1rem 2rem;
+            }
+            
+            .qualities {
+                grid-template-columns: 1fr;
+                padding: 0 1rem;
+            }
+            
+            .content-box {
+                padding: 2rem 1.5rem 2rem 2rem;
+            }
+            
+            .quote {
+                padding: 0 1.5rem;
+            }
+            
+            .flowers-container {
+                gap: 1rem;
+            }
+            
+            .flower-item {
+                width: calc(50% - 1rem);
+            }
+        }
+
+        @media (max-width: 480px) {
+            ul {
+                gap: 0.8rem;
+            }
+            
+            li a {
+                padding: 0.6rem 1rem;
+                font-size: 0.9rem;
+            }
+            
+            .content-box {
+                padding: 1.8rem 1.2rem 1.8rem 1.8rem;
+            }
+            
+            .quote {
+                font-size: 1.3rem;
+            }
+            
+            .flower-item {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Создаем элементы страницы
+            createHeader();
+            createNavigation();
+            createQualities();
+            createContent();
+            createQuote();
+            createFlowers();
+            createFooter();
+            
+            // Анимация при загрузке
+            setTimeout(() => {
+                document.querySelectorAll('.quality-card, .content-box').forEach(el => {
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0)';
+                });
+            }, 300);
+            
+            // Плавная прокрутка для навигации
+            document.querySelectorAll('nav a').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+        
+        function createHeader() {
+            const header = document.createElement('header');
+            header.className = 'header';
+            
+            const headerContent = document.createElement('div');
+            headerContent.className = 'header-content';
+            
+            const h1 = document.createElement('h1');
+            h1.textContent = 'Анжелика';
+            
+            const subtitle = document.createElement('div');
+            subtitle.className = 'subtitle';
+            subtitle.innerHTML = 'Самый добрый и нежный человек на свете <span class="flower">❀</span> Наше семейное солнышко';
+            
+            headerContent.appendChild(h1);
+            headerContent.appendChild(subtitle);
+            header.appendChild(headerContent);
+            document.body.appendChild(header);
+        }
+        
+        function createNavigation() {
+            const nav = document.createElement('nav');
+            const ul = document.createElement('ul');
+            
+            const navItems = [
+                {text: 'Качества', icon: 'fa-star'},
+                {text: 'Мудрость', icon: 'fa-lightbulb'},
+                {text: 'Забота', icon: 'fa-hands-helping'},
+                {text: 'Любимые цветы', icon: 'fa-spa'}
+            ];
+            
+            navItems.forEach(item => {
+                const li = document.createElement('li');
+                const a = document.createElement('a');
+                a.href = `#${item.text.toLowerCase()}`;
+                
+                const icon = document.createElement('i');
+                icon.className = `fas ${item.icon}`;
+                
+                a.appendChild(icon);
+                a.appendChild(document.createTextNode(item.text));
+                li.appendChild(a);
+                ul.appendChild(li);
+            });
+            
+            nav.appendChild(ul);
+            document.body.appendChild(nav);
+        }
+        
+        function createQualities() {
+            const section = document.createElement('section');
+            section.className = 'qualities';
+            section.id = 'качества';
+            
+            const qualities = [
+                {
+                    icon: 'fa-heart',
+                    title: 'Любовь',
+                    description: 'Анжелика обладает безграничной любовью к своей семье. Её сердце открыто для всех, а забота и внимание не знают границ. Она умеет любить по-настоящему, без условий и ожиданий.'
+                },
+                {
+                    icon: 'fa-seedling',
+                    title: 'Нежность',
+                    description: 'Нежность Анжелики - это её суперсила. Её тёплые объятия, ласковые слова и мягкий взгляд способны исцелить любую боль. Она дарит окружающим чувство защищённости и покоя.'
+                },
+                {
+                    icon: 'fa-crown',
+                    title: 'Мудрость',
+                    description: 'Жизненная мудрость Анжелики - бесценный дар. Она всегда знает, как поступить правильно, даёт мудрые советы и помогает находить выход из сложных ситуаций. Её опыт - наше сокровище.'
+                }
+            ];
+            
+            qualities.forEach(quality => {
+                const card = document.createElement('div');
+                card.className = 'quality-card';
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                
+                const iconDiv = document.createElement('div');
+                iconDiv.className = 'card-icon';
+                
+                const icon = document.createElement('i');
+                icon.className = `fas ${quality.icon}`;
+                
+                const contentDiv = document.createElement('div');
+                contentDiv.className = 'card-content';
+                
+                const title = document.createElement('h3');
+                title.textContent = quality.title;
+                
+                const desc = document.createElement('p');
+                desc.textContent = quality.description;
+                
+                iconDiv.appendChild(icon);
+                contentDiv.appendChild(title);
+                contentDiv.appendChild(desc);
+                
+                card.appendChild(iconDiv);
+                card.appendChild(contentDiv);
+                section.appendChild(card);
+            });
+            
+            document.body.appendChild(section);
+        }
+        
+        function createContent() {
+            const section = document.createElement('section');
+            section.className = 'content';
+            section.id = 'мудрость';
+            
+            const contentBox = document.createElement('div');
+            contentBox.className = 'content-box';
+            contentBox.style.opacity = '0';
+            contentBox.style.transform = 'translateY(30px)';
+            contentBox.style.transition = 'opacity 0.6s ease 0.2s, transform 0.6s ease 0.2s';
+            
+            const title = document.createElement('h2');
+            title.textContent = 'Мудрость нашей мамы';
+            
+            const content = document.createElement('div');
+            content.innerHTML = `
+                <p>Анжелика - источник мудрости и вдохновения для нашей семьи:</p>
+                <p>✦ <span class="highlight">Жизненный опыт</span> - её советы всегда точны и помогают в трудных ситуациях.</p>
+                <p>✦ <span class="highlight">Душевная чуткость</span> - она чувствует настроение каждого члена семьи и знает, как поддержать.</p>
+                <p>✦ <span class="highlight">Терпение</span> - её безграничное терпение помогает нам расти и развиваться.</p>
+                <p>✦ <span class="highlight">Сила духа</span> - в трудные моменты она становится нашей опорой и вдохновением.</p>
+                <p>✦ <span class="highlight">Умение слушать</span> - с ней можно поделиться любыми переживаниями и получить понимание.</p>
+                <p>✦ <span class="highlight">Бескорыстная любовь</span> - её любовь к семье чиста и безгранична, как океан.</p>
+            `;
+            
+            contentBox.appendChild(title);
+            contentBox.appendChild(content);
+            section.appendChild(contentBox);
+            document.body.appendChild(section);
+        }
+        
+        function createQuote() {
+            const section = document.createElement('section');
+            section.className = 'quote-section';
+            section.id = 'забота';
+            
+            const quote = document.createElement('div');
+            quote.className = 'quote';
+            quote.textContent = 'Мама - это тот человек, который любит тебя просто за то, что ты есть. Её любовь не зависит от достижений или успехов. Анжелика дарит нам это безусловное принятие каждый день.';
+            
+            const author = document.createElement('div');
+            author.className = 'author';
+            author.innerHTML = '— Благодарные дети <span class="heart">❤</span>';
+            
+            section.appendChild(quote);
+            section.appendChild(author);
+            document.body.appendChild(section);
+        }
+        
+        function createFlowers() {
+            const section = document.createElement('section');
+            section.className = 'flowers-container';
+            section.id = 'любимые-цветы';
+            
+            const flowerItems = [
+                {icon: 'fa-spa', title: 'Розы', description: 'Классические и элегантные'},
+                {icon: 'fa-leaf', title: 'Тюльпаны', description: 'Нежные и весенние'},
+                {icon: 'fa-tree', title: 'Лилии', description: 'Ароматные и изысканные'},
+                {icon: 'fa-feather', title: 'Пионы', description: 'Пышные и романтичные'}
+            ];
+            
+            flowerItems.forEach(item => {
+                const flowerItem = document.createElement('div');
+                flowerItem.className = 'flower-item';
+                
+                const icon = document.createElement('i');
+                icon.className = `fas ${item.icon}`;
+                
+                const title = document.createElement('h4');
+                title.textContent = item.title;
+                title.style.marginBottom = '0.5rem';
+                title.style.color = 'var(--purple-dark)';
+                
+                const desc = document.createElement('p');
+                desc.textContent = item.description;
+                desc.style.fontSize = '0.9rem';
+                desc.style.color = 'var(--text-color)';
+                
+                flowerItem.appendChild(icon);
+                flowerItem.appendChild(title);
+                flowerItem.appendChild(desc);
+                section.appendChild(flowerItem);
+            });
+            
+            document.body.appendChild(section);
+        }
+        
+        function createFooter() {
+            const footer = document.createElement('footer');
+            
+            const message = document.createElement('p');
+            message.innerHTML = 'Дорогая мама, спасибо тебе за всё! <span class="flower">❀</span> Ты - наше самое большое счастье и вдохновение. Пусть каждый твой день будет наполнен радостью, здоровьем и любовью!';
+            
+            const wish = document.createElement('p');
+            wish.innerHTML = 'Мы ценим каждое мгновение, проведённое с тобой, и благодарны за твою безграничную любовь и заботу. <span class="heart">❤</span>';
+            
+            const copyright = document.createElement('p');
+            copyright.innerHTML = 'Создано с бесконечной любовью <span class="heart">❤</span> ';
+            
+            const socialIcons = document.createElement('div');
+            socialIcons.className = 'social-icons';
+            
+            const socialNetworks = ['fa-heart', 'fa-spa', 'fa-seedling', 'fa-feather'];
+            
+            socialNetworks.forEach(network => {
+                const link = document.createElement('a');
+                link.href = '#';
+                
+                const icon = document.createElement('i');
+                icon.className = `fas ${network}`;
+                
+                link.appendChild(icon);
+                socialIcons.appendChild(link);
+            });
+            
+            footer.appendChild(message);
+            footer.appendChild(wish);
+            footer.appendChild(copyright);
+            footer.appendChild(socialIcons);
+            document.body.appendChild(footer);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Аня - Наше Солнышко</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #fff0f5;
+            --accent-color: #ff69b4;
+            --pink-light: #ffb6c1;
+            --pink-dark: #db7093;
+            --text-color: #4a4a4a;
+            --shadow: 0 4px 20px rgba(219, 112, 147, 0.15);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #fff0f5 0%, #ffe4e1 100%);
+            color: var(--text-color);
+            line-height: 1.7;
+            overflow-x: hidden;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="20" cy="20" r="3" fill="%23ffb6c180"/><circle cx="50" cy="50" r="2" fill="%23ffb6c180"/><circle cx="80" cy="70" r="4" fill="%23ffb6c180"/><circle cx="30" cy="80" r="2.5" fill="%23ffb6c180"/></svg>');
+            background-size: 200px;
+            opacity: 0.3;
+            z-index: -1;
+        }
+
+        .header {
+            padding: 5rem 1rem 3rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, var(--accent-color) 0%, transparent 70%);
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        h1 {
+            font-size: clamp(2.2rem, 8vw, 3.8rem);
+            color: var(--pink-dark);
+            margin-bottom: 1rem;
+            font-weight: 700;
+            text-shadow: 0 2px 8px rgba(219, 112, 147, 0.2);
+        }
+
+        .subtitle {
+            font-size: clamp(1.2rem, 4vw, 1.6rem);
+            color: var(--accent-color);
+            font-weight: 300;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            position: relative;
+        }
+
+        .heart {
+            color: var(--accent-color);
+            animation: pulse 1.5s infinite;
+            display: inline-block;
+            margin: 0 5px;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        nav {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 1.2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(5px);
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+
+        li a {
+            color: var(--text-color);
+            text-decoration: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            font-size: clamp(0.95rem, 3vw, 1.1rem);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 182, 193, 0.1);
+            border: 1px solid var(--pink-light);
+        }
+
+        li a:hover {
+            background: var(--accent-color);
+            color: white;
+            box-shadow: 0 5px 15px rgba(219, 112, 147, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .qualities {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 3rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .quality-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .quality-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 30px rgba(219, 112, 147, 0.25);
+        }
+
+        .card-icon {
+            background: linear-gradient(135deg, var(--pink-light) 0%, var(--accent-color) 100%);
+            color: white;
+            font-size: 2.5rem;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card-content {
+            padding: 2rem;
+            flex-grow: 1;
+        }
+
+        .card-content h3 {
+            color: var(--pink-dark);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .card-content p {
+            margin-bottom: 1.5rem;
+        }
+
+        .content {
+            max-width: 900px;
+            margin: 4rem auto;
+            padding: 0 1.5rem;
+            position: relative;
+        }
+
+        .content-box {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .content-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 8px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--pink-light), var(--accent-color));
+        }
+
+        .content-box h2 {
+            color: var(--pink-dark);
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+        }
+
+        .content-box p {
+            margin-bottom: 1.2rem;
+            font-size: 1.1rem;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, rgba(255,182,193,0.3) 0%, rgba(255,182,193,0.1) 100%);
+            padding: 0.3rem 0.6rem;
+            border-radius: 5px;
+            font-weight: 600;
+        }
+
+        .quote-section {
+            margin: 5rem auto;
+            max-width: 800px;
+            text-align: center;
+            padding: 0 1.5rem;
+        }
+
+        .quote {
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            font-style: italic;
+            color: var(--pink-dark);
+            position: relative;
+            padding: 0 3rem;
+        }
+
+        .quote::before,
+        .quote::after {
+            content: '"';
+            font-size: 4rem;
+            color: var(--pink-light);
+            position: absolute;
+            opacity: 0.3;
+        }
+
+        .quote::before {
+            top: -1.5rem;
+            left: 0;
+        }
+
+        .quote::after {
+            bottom: -3rem;
+            right: 0;
+        }
+
+        .author {
+            margin-top: 2rem;
+            font-size: 1.2rem;
+            color: var(--accent-color);
+        }
+
+        .hearts-container {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .heart-item {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+            width: 150px;
+            transition: all 0.3s ease;
+        }
+
+        .heart-item:hover {
+            transform: scale(1.1);
+        }
+
+        .heart-item i {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        footer {
+            background: linear-gradient(135deg, var(--pink-light) 0%, var(--accent-color) 100%);
+            color: white;
+            text-align: center;
+            padding: 3rem 1rem;
+            margin-top: 5rem;
+            position: relative;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            left: 0;
+            width: 100%;
+            height: 50px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M1200 120L0 16.48 0 0 1200 0 1200 120z" fill="%23ffffff"/></svg>');
+            background-size: 1200px 100%;
+        }
+
+        footer p {
+            max-width: 600px;
+            margin: 0 auto 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            color: white;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            background: white;
+            color: var(--accent-color);
+            transform: translateY(-5px);
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 3rem 1rem 2rem;
+            }
+            
+            .qualities {
+                grid-template-columns: 1fr;
+                padding: 0 1rem;
+            }
+            
+            .content-box {
+                padding: 2rem 1.5rem 2rem 2rem;
+            }
+            
+            .quote {
+                padding: 0 1.5rem;
+            }
+            
+            .hearts-container {
+                gap: 0.5rem;
+            }
+            
+            .heart-item {
+                width: calc(50% - 1rem);
+            }
+        }
+
+        @media (max-width: 480px) {
+            ul {
+                gap: 0.8rem;
+            }
+            
+            li a {
+                padding: 0.6rem 1rem;
+            }
+            
+            .content-box {
+                padding: 1.8rem 1.2rem 1.8rem 1.8rem;
+            }
+            
+            .quote {
+                font-size: 1.3rem;
+            }
+            
+            .heart-item {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Создаем элементы страницы
+            createHeader();
+            createNavigation();
+            createQualities();
+            createContent();
+            createQuote();
+            createHearts();
+            createFooter();
+            
+            // Анимация при загрузке
+            setTimeout(() => {
+                document.querySelectorAll('.quality-card, .content-box').forEach(el => {
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0)';
+                });
+            }, 300);
+            
+            // Плавная прокрутка для навигации
+            document.querySelectorAll('nav a').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+        
+        function createHeader() {
+            const header = document.createElement('header');
+            header.className = 'header';
+            
+            const headerContent = document.createElement('div');
+            headerContent.className = 'header-content';
+            
+            const h1 = document.createElement('h1');
+            h1.textContent = 'Аня';
+            
+            const subtitle = document.createElement('div');
+            subtitle.className = 'subtitle';
+            subtitle.innerHTML = 'Солнечный лучик в нашей жизни <span class="heart">❤</span> Источник радости и вдохновения';
+            
+            headerContent.appendChild(h1);
+            headerContent.appendChild(subtitle);
+            header.appendChild(headerContent);
+            document.body.appendChild(header);
+        }
+        
+        function createNavigation() {
+            const nav = document.createElement('nav');
+            const ul = document.createElement('ul');
+            
+            const navItems = [
+                {text: 'Качества', icon: 'fa-star'},
+                {text: 'Особенности', icon: 'fa-gem'},
+                {text: 'Таланты', icon: 'fa-music'},
+                {text: 'Любимые вещи', icon: 'fa-heart'}
+            ];
+            
+            navItems.forEach(item => {
+                const li = document.createElement('li');
+                const a = document.createElement('a');
+                a.href = `#${item.text.toLowerCase()}`;
+                
+                const icon = document.createElement('i');
+                icon.className = `fas ${item.icon}`;
+                
+                a.appendChild(icon);
+                a.appendChild(document.createTextNode(item.text));
+                li.appendChild(a);
+                ul.appendChild(li);
+            });
+            
+            nav.appendChild(ul);
+            document.body.appendChild(nav);
+        }
+        
+        function createQualities() {
+            const section = document.createElement('section');
+            section.className = 'qualities';
+            section.id = 'качества';
+            
+            const qualities = [
+                {
+                    icon: 'fa-smile',
+                    title: 'Доброта',
+                    description: 'Аня обладает удивительной способностью распространять доброту вокруг себя. Её забота о близких не знает границ, а чуткое сердце всегда готово поддержать в трудную минуту.'
+                },
+                {
+                    icon: 'fa-lightbulb',
+                    title: 'Ум',
+                    description: 'Острый ум и проницательность Ани позволяют ей находить решения самых сложных задач. Она умеет анализировать ситуации и давать мудрые советы, которые всегда оказываются к месту.'
+                },
+                {
+                    icon: 'fa-laugh',
+                    title: 'Чувство юмора',
+                    description: 'Искромётный юмор Ани способен развеять любую грусть. Её смех заразителен, а шутки всегда уместны и поднимают настроение всем вокруг.'
+                }
+            ];
+            
+            qualities.forEach(quality => {
+                const card = document.createElement('div');
+                card.className = 'quality-card';
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                
+                const iconDiv = document.createElement('div');
+                iconDiv.className = 'card-icon';
+                
+                const icon = document.createElement('i');
+                icon.className = `fas ${quality.icon}`;
+                
+                const contentDiv = document.createElement('div');
+                contentDiv.className = 'card-content';
+                
+                const title = document.createElement('h3');
+                title.textContent = quality.title;
+                
+                const desc = document.createElement('p');
+                desc.textContent = quality.description;
+                
+                iconDiv.appendChild(icon);
+                contentDiv.appendChild(title);
+                contentDiv.appendChild(desc);
+                
+                card.appendChild(iconDiv);
+                card.appendChild(contentDiv);
+                section.appendChild(card);
+            });
+            
+            document.body.appendChild(section);
+        }
+        
+        function createContent() {
+            const section = document.createElement('section');
+            section.className = 'content';
+            section.id = 'особенности';
+            
+            const contentBox = document.createElement('div');
+            contentBox.className = 'content-box';
+            contentBox.style.opacity = '0';
+            contentBox.style.transform = 'translateY(30px)';
+            contentBox.style.transition = 'opacity 0.6s ease 0.2s, transform 0.6s ease 0.2s';
+            
+            const title = document.createElement('h2');
+            title.textContent = 'Уникальные особенности нашей Ани';
+            
+            const content = document.createElement('div');
+            content.innerHTML = `
+                <p>Аня обладает редким сочетанием качеств, которые делают её неповторимой:</p>
+                <p>✦ <span class="highlight">Невероятная эмпатия</span> - она чувствует настроение других и всегда знает, как поддержать.</p>
+                <p>✦ <span class="highlight">Творческая натура</span> - будь то рисование, музыка или кулинария, Аня подходит к любому делу с фантазией.</p>
+                <p>✦ <span class="highlight">Жизнелюбие</span> - её энергия и оптимизм заряжают всех вокруг.</p>
+                <p>✦ <span class="highlight">Надёжность</span> - на Аню можно положиться в любой ситуации.</p>
+                <p>✦ <span class="highlight">Врождённое изящество</span> - она обладает естественной грацией в движениях и манерах.</p>
+                <p>✦ <span class="highlight">Способность вдохновлять</span> - рядом с Аней хочется становиться лучше и достигать большего.</p>
+            `;
+            
+            contentBox.appendChild(title);
+            contentBox.appendChild(content);
+            section.appendChild(contentBox);
+            document.body.appendChild(section);
+        }
+        
+        function createQuote() {
+            const section = document.createElement('section');
+            section.className = 'quote-section';
+            section.id = 'таланты';
+            
+            const quote = document.createElement('div');
+            quote.className = 'quote';
+            quote.textContent = 'Аня - это тот человек, после общения с которым чувствуешь себя счастливее, умнее и вдохновлённее. Её присутствие - подарок для всех, кто её знает.';
+            
+            const author = document.createElement('div');
+            author.className = 'author';
+            author.innerHTML = '— Любящая семья <span class="heart">❤</span>';
+            
+            section.appendChild(quote);
+            section.appendChild(author);
+            document.body.appendChild(section);
+        }
+        
+        function createHearts() {
+            const section = document.createElement('section');
+            section.className = 'hearts-container';
+            section.id = 'любимые-вещи';
+            
+            const heartItems = [
+                {icon: 'fa-book', title: 'Книги', description: 'Увлекательные романы'},
+                {icon: 'fa-mug-hot', title: 'Чай', description: 'Ароматные сорта'},
+                {icon: 'fa-music', title: 'Музыка', description: 'Разные жанры'},
+                {icon: 'fa-cookie', title: 'Сладости', description: 'Особенно шоколад'}
+            ];
+            
+            heartItems.forEach(item => {
+                const heartItem = document.createElement('div');
+                heartItem.className = 'heart-item';
+                
+                const icon = document.createElement('i');
+                icon.className = `fas ${item.icon}`;
+                
+                const title = document.createElement('h4');
+                title.textContent = item.title;
+                title.style.marginBottom = '0.5rem';
+                title.style.color = 'var(--pink-dark)';
+                
+                const desc = document.createElement('p');
+                desc.textContent = item.description;
+                desc.style.fontSize = '0.9rem';
+                desc.style.color = 'var(--text-color)';
+                
+                heartItem.appendChild(icon);
+                heartItem.appendChild(title);
+                heartItem.appendChild(desc);
+                section.appendChild(heartItem);
+            });
+            
+            document.body.appendChild(section);
+        }
+        
+        function createFooter() {
+            const footer = document.createElement('footer');
+            
+            const message = document.createElement('p');
+            message.innerHTML = 'Аня - наше самое большое счастье! <span class="heart">❤</span> Пусть каждый твой день будет наполнен радостью, любовью и вдохновением!';
+            
+            const copyright = document.createElement('p');
+            copyright.innerHTML = 'Создано с любовью <span class="heart">❤</span> ';
+            
+            const socialIcons = document.createElement('div');
+            socialIcons.className = 'social-icons';
+            
+            const socialNetworks = ['fa-facebook-f', 'fa-instagram', 'fa-vk', 'fa-telegram'];
+            
+            socialNetworks.forEach(network => {
+                const link = document.createElement('a');
+                link.href = '#';
+                
+                const icon = document.createElement('i');
+                icon.className = `fab ${network}`;
+                
+                link.appendChild(icon);
+                socialIcons.appendChild(link);
+            });
+            
+            footer.appendChild(message);
+            footer.appendChild(copyright);
+            footer.appendChild(socialIcons);
+            document.body.appendChild(footer);
+        }
+    </script>
+</body>
+</html>
