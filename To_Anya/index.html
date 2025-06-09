@@ -274,34 +274,6 @@
             color: var(--accent-color);
         }
 
-        .hearts-container {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: 3rem;
-            flex-wrap: wrap;
-        }
-
-        .heart-item {
-            background: white;
-            border-radius: 15px;
-            padding: 1.5rem;
-            text-align: center;
-            box-shadow: var(--shadow);
-            width: 150px;
-            transition: all 0.3s ease;
-        }
-
-        .heart-item:hover {
-            transform: scale(1.1);
-        }
-
-        .heart-item i {
-            font-size: 2.5rem;
-            color: var(--accent-color);
-            margin-bottom: 1rem;
-        }
-
         footer {
             background: linear-gradient(135deg, var(--pink-light) 0%, var(--accent-color) 100%);
             color: white;
@@ -328,32 +300,6 @@
             font-size: 1.1rem;
         }
 
-        .social-icons {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin-top: 1.5rem;
-        }
-
-        .social-icons a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 50px;
-            height: 50px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
-            color: white;
-            font-size: 1.5rem;
-            transition: all 0.3s ease;
-        }
-
-        .social-icons a:hover {
-            background: white;
-            color: var(--accent-color);
-            transform: translateY(-5px);
-        }
-
         @media (max-width: 768px) {
             .header {
                 padding: 3rem 1rem 2rem;
@@ -370,14 +316,6 @@
             
             .quote {
                 padding: 0 1.5rem;
-            }
-            
-            .hearts-container {
-                gap: 0.5rem;
-            }
-            
-            .heart-item {
-                width: calc(50% - 1rem);
             }
         }
 
@@ -397,10 +335,6 @@
             .quote {
                 font-size: 1.3rem;
             }
-            
-            .heart-item {
-                width: 100%;
-            }
         }
     </style>
 </head>
@@ -413,7 +347,6 @@
             createQualities();
             createContent();
             createQuote();
-            createHearts();
             createFooter();
             
             // Анимация при загрузке
@@ -594,44 +527,6 @@
             document.body.appendChild(section);
         }
         
-        function createHearts() {
-            const section = document.createElement('section');
-            section.className = 'hearts-container';
-            section.id = 'любимые-вещи';
-            
-            const heartItems = [
-                {icon: 'fa-book', title: 'Книги', description: 'Увлекательные романы'},
-                {icon: 'fa-mug-hot', title: 'Чай', description: 'Ароматные сорта'},
-                {icon: 'fa-music', title: 'Музыка', description: 'Разные жанры'},
-                {icon: 'fa-cookie', title: 'Сладости', description: 'Особенно шоколад'}
-            ];
-            
-            heartItems.forEach(item => {
-                const heartItem = document.createElement('div');
-                heartItem.className = 'heart-item';
-                
-                const icon = document.createElement('i');
-                icon.className = `fas ${item.icon}`;
-                
-                const title = document.createElement('h4');
-                title.textContent = item.title;
-                title.style.marginBottom = '0.5rem';
-                title.style.color = 'var(--pink-dark)';
-                
-                const desc = document.createElement('p');
-                desc.textContent = item.description;
-                desc.style.fontSize = '0.9rem';
-                desc.style.color = 'var(--text-color)';
-                
-                heartItem.appendChild(icon);
-                heartItem.appendChild(title);
-                heartItem.appendChild(desc);
-                section.appendChild(heartItem);
-            });
-            
-            document.body.appendChild(section);
-        }
-        
         function createFooter() {
             const footer = document.createElement('footer');
             
@@ -641,25 +536,8 @@
             const copyright = document.createElement('p');
             copyright.innerHTML = 'Создано с любовью <span class="heart">❤</span> ';
             
-            const socialIcons = document.createElement('div');
-            socialIcons.className = 'social-icons';
-            
-            const socialNetworks = ['fa-heart', 'fa-spa', 'fa-seedling', 'fa-feather'];
-            
-            socialNetworks.forEach(network => {
-                const link = document.createElement('a');
-                link.href = '#';
-                
-                const icon = document.createElement('i');
-                icon.className = `fab ${network}`;
-                
-                link.appendChild(icon);
-                socialIcons.appendChild(link);
-            });
-            
             footer.appendChild(message);
             footer.appendChild(copyright);
-            footer.appendChild(socialIcons);
             document.body.appendChild(footer);
         }
     </script>
